@@ -26,6 +26,17 @@ export default function Home() {
           }
         `}
         </style>
+        <style jsx>{`
+          h1 {
+            text-align: center;
+            font-size: 48px;
+          }
+          a{
+            color: violet;
+            padding: 20px
+          }
+        `}
+        </style>
    
 
     </div>
