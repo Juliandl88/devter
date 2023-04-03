@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Juego de plataformas</title>
+    <style>
+      #canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script>
+      // Inicialización del canvas
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Variables de juego
+      let x = 0;
+      let y = 250;
+      let vx = 0;
+      let vy = 0;
+      let onGround = true;
+      let score = 0;
+
+      // Función para dibujar al jugador
+      function drawPlayer() {
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, 20, 20);
+      }
+
+      // Función para dibujar el suelo
+      function drawGround() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 270, 500, 30);
+      }
+
+      // Función para actualizar el juego
+      function update() {
+        // Movimiento horizontal
+        x += vx;
+        if (x < 0) {
+          x = 0;
+        } else if (x > 480) {
+          x = 480;
+        }
+
+        // Movimiento vertical
+        if (onGround) {
+          vy = 0;
+        } else {
+          vy += 1;
+        }
+        y += vy;
+        if (y > 250) {
+          y = 250;
+          onGround = true;
+        }
+
+        // Detección de colisiones con el suelo
+        if (y + 20 > 270) {
+          onGround = true;
+        }
+
+        // Actualización de la puntuación
+        score += 1;
+      }
+
+      // Función para dibujar el juego
+      function draw() {
+        // Limpieza del canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Dibujo del suelo
+        drawGround();
+
+        // Dibujo del jugador
+        drawPlayer();
+
+        // Dibujo de la puntuación
+        ctx.fillStyle = "black";
+        ctx.fillText("Score: " + score, 10, 20);
+      }
+
+      // Bucle principal del juego
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      // Eventos de teclado
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 37) {
+          vx = -5;
+        } else if (event.keyCode === 39) {
+          vx = 5;
+        } else if (event.keyCode === 38 && onGround) {
+          vy = -10;
+          onGround = false;
+        }
+      });
+
+      document.addEventListener("keyup", function (event) {
+        if (event.keyCode === 37 || event.keyCode === 39) {
+          vx = 0;
+        }
+      });
+
+      // Inicio del juego
+      loop();
+    </script>
+  </body>
+</html>
