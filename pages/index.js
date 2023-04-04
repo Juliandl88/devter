@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Image from "next/image";
 import AppLayout from "../components/AppLayout";
+import { colors } from "../styles/theme";
+import Button from "../components/button";
+import GitHub from "../components/Icons/GitHub";
 // devit
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -15,30 +15,46 @@ export default function Home() {
       </Head>
 
       <AppLayout>
-        <h1>
-          <a href="https://nextjs.org">devter</a>
-        </h1>
-        <nav>
-          <Link href="/timeline">timeline</Link>
-        </nav>
+        <section>
+          {" "}
+          <Image src="/devter-logo.png" alt="logo" width={120} height={120} />
+          <h1>Devter</h1>
+          <h2>
+            Talk about development
+            <br />
+            with developers 👩‍💻👨‍💻
+          </h2>
+          <div>
+            <Button>
+              <GitHub fill="#fff" width={24} height={24} />
+              Login with GitHub
+            </Button>
+          </div>
+        </section>
       </AppLayout>
 
       <style jsx>{`
+        img {
+          width: 120px;
+        }
+        div {
+          margin-top: 16px;
+        }
+        section {
+          display: grid;
+          height: 100%;
+          place-content: center;
+          place-items: center;
+        }
         h1 {
-          text-align: center;
-          font-size: 48px;
+          color: ${colors.secondary};
+          font-weight: 800;
+          margin-bottom: 16px;
         }
-        nav {
-          font-size: 24px;
-          text-align: center;
-        }
-        .another-title {
-          color: #333;
-          font-size: 24px;
-        }
-        a {
-          color: orange;
-          text-decoration: none;
+        h2 {
+          color: ${colors.primary};
+          font-size: 21px;
+          margin: 0;
         }
       `}</style>
     </>
