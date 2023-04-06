@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCIwG0Oei94TxAS60EXCroZ2GKo5DSHv7Q",
@@ -11,9 +12,32 @@ const firebaseConfig = {
     measurementId: "G-Y2KM409BCX"
   };
 
-  firebase.initializeApp(firebaseConfig)
+ 
+!firebase.apps.length &&
+firebase.initializeApp(firebaseConfig)
 
-  export const loginWithGitHub = () => {
-    const githubProvider = new firebase.auth.GitHubAuthProvider()
-    return firebase.auth().signInWithPopup(githubProvider)
-  }
+const mapUserFromFirebaseAuthToUser = (user) => {
+const {displayName, email, photoURL } = user
+
+return {
+  avatar: photoURL,
+  username: displayName,
+  email
+}
+}
+
+export const onAuthStateChanged = (onChange) => {
+return firebase
+  .auth()
+  .onAuthStateChanged(user => {
+    const normalizedUser = mapUserFromFirebaseAuthToUser(user)
+    onChange(normalizedUser)
+  })
+}
+
+export const loginWithGitHub = () => {
+const githubProvider = new firebase.auth.GithubAuthProvider()
+return firebase
+  .auth()
+  .signInWithPopup(githubProvider)
+}

@@ -1,18 +1,24 @@
-import Head from "next/head";
-import Image from "next/image";
-import AppLayout from "../components/AppLayout";
-import { colors } from "../styles/theme";
-import Button from "../components/button";
-import GitHub from "../components/Icons/GitHub";
-import { loginWithGitHub } from "../firebase/client"
+import {useEffect, useState} from 'react'
+import Head from 'next/head'
+import AppLayout from '../components/AppLayout'
+import { colors } from '../styles/theme'
+import Button from '../components/Button'
+import GitHub from '../components/Icons/GitHub'
 
+import {
+  loginWithGitHub,
+  onAuthStateChanged
+} from '../firebase/client'
 
 export default function Home() {
+  const [user, setUser] = useState(undefined)
+  
+  useEffect(() => {
+    onAuthStateChanged(setUser)
+  }, [])
 
   const handleClick = () => {
-    loginWithGitHub().then(user => {
-      console.log(user)
-    }).catch(err => {
+    loginWithGitHub().then(setUser).catch(err => {
       console.log(err)
     })
   }
@@ -26,20 +32,26 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          {" "}
-          <Image src="/devter-logo.png" alt="logo" width={120} height={120} />
+          <img src='/devter-logo.png' alt='Logo' />
           <h1>Devter</h1>
-          <h2>
-            Talk about development
-            <br />
-            with developers 👩‍💻👨‍💻
-          </h2>
+          <h2>Talk about development<br />with developers 👩‍💻👨‍💻</h2>
+
           <div>
-            <Button onClick={handleClick}>
-              <GitHub fill="#fff" width={24} height={24} />
-              Login with GitHub
-            </Button>
+            {
+              user === null &&
+                <Button onClick={handleClick}>
+                  <GitHub fill='#fff' width={24} height={24} />
+                  Login with GitHub
+                </Button>
+            }
+            {
+              user && user.avatar && <div>
+                <img src={user.avatar} />
+                <strong>{user.username}</strong>
+              </div>
+            }
           </div>
+          
         </section>
       </AppLayout>
 
@@ -68,5 +80,5 @@ export default function Home() {
         }
       `}</style>
     </>
-  );
+  )
 }
