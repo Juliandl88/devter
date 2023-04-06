@@ -4,14 +4,14 @@ import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import Button from '../components/Button'
 import GitHub from '../components/Icons/GitHub'
-
+import firebase from "firebase"
 import {
   loginWithGitHub,
   onAuthStateChanged
 } from '../firebase/client'
 
 export default function Home() {
-  const [user, setUser] = useState(undefined)
+  const [user, setUser] = useState()
   
   useEffect(() => {
     onAuthStateChanged(setUser)
