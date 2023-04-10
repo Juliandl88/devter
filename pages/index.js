@@ -34,7 +34,8 @@ export default function Home() {
         <section>
           <img src='/devter-logo.png' alt='Logo' />
           <h1>Devter App</h1>
-          <h2>Talk about development<br />with developers 👩‍💻👨‍💻</h2>
+          <h2>Talk about development APP
+        <br />with developers 👩‍💻👨‍💻</h2>
 
           <div>
             {
