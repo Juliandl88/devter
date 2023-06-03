@@ -33,8 +33,8 @@ export default function Home() {
       <AppLayout>
         <section>
           <img src='/devter-logo.png' alt='Logo' />
-          <h1>Devter App</h1>
-          <h2>Talk about development APP
+          <h1>DEVTER APP</h1>
+          <h2>Talk about DEVELOPMENT APP
         <br />with developers 👩‍💻👨‍💻</h2>
 
           <div>
@@ -61,7 +61,7 @@ export default function Home() {
           width: 120px;
         }
         div {
-          margin-top: 16px;
+          margin-top: 18px;
         }
         section {
           display: grid;
