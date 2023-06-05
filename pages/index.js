@@ -26,23 +26,23 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>DEVTER 🐦</title>
+        <title>devter 🐦</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AppLayout>
         <section>
           <img src='/devter-logo.png' alt='Logo' />
-          <h1>DEVTER APP 👩‍💻 </h1>
+          <h1>Devter APP 👩‍💻 </h1>
           <h2>Talk about DEVELOPMENT APP
-        <br />with developers 👩‍💻👨‍💻</h2>
+        <br />without developers 👩‍💻👨‍💻</h2>
 
           <div>
-            {
+            {|
               user === null &&
                 <Button onClick={handleClick}>
                   <GitHub fill='#fff' width={24} height={24} />
-                 - Login with GitHub -
+                 - Login & GitHub -
                 </Button>
             }
             {
