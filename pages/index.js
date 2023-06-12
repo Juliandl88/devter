@@ -35,14 +35,14 @@ export default function Home() {
           <img src='/devter-logo.png' alt='Logo' />
           <h1>Devter APP 👩‍💻 </h1>
           <h2>Talk about DEVELOPMENT APP
-        <br />without developers 👩‍💻👨‍💻</h2>
+        <br />with developers 👩‍💻👨‍💻</h2>
 
           <div>
             {|
               user === null &&
                 <Button onClick={handleClick}>
                   <GitHub fill='#fff' width={24} height={24} />
-                 - Login & GitHub -
+                 - Login with GitHub -
                 </Button>
             }
             {
