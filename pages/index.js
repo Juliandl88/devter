@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>devter 🐦</title>
+        <title>Devter 🐦</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -34,11 +34,11 @@ export default function Home() {
         <section>
           <img src='/devter-logo.png' alt='Logo' />
           <h1>Devter APP 👩‍💻 </h1>
-          <h2>Talk about DEVELOPMENT APP
+          <h2>Talk about DEVELOPMENT
         <br />with developers 👩‍💻👨‍💻</h2>
 
           <div>
-            {|
+            {
               user === null &&
                 <Button onClick={handleClick}>
                   <GitHub fill='#fff' width={24} height={24} />
